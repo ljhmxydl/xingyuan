@@ -6,12 +6,12 @@
         <img slot="icon-active" src="../assets/images/index/index_1_1.png">
         <span slot="label">首页</span>
       </tabbar-item>
-      <tabbar-item link="/patient">
+      <tabbar-item link="/order">
         <img slot="icon" src="../assets/images/index/index_2.png">
         <img slot="icon-active" src="../assets/images/index/index_2_1.png">
         <span slot="label">问诊</span>
       </tabbar-item>
-      <tabbar-item link="/order">
+      <tabbar-item link="/patient">
         <img slot="icon" src="../assets/images/index/index_3.png">
         <img slot="icon-active" src="../assets/images/index/index_3_1.png">
         <span slot="label">患者</span>

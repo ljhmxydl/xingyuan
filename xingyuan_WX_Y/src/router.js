@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from './store'
-import home from './views/home/router'
+
 //路由开始
 import login from './views/login/router'
-import fertilizer from './views/fertilizer/router'
-import record from './views/record/router'
-import personal from './views/personal/router'
+import home from './views/home/router'
 import order from './views/order/router'
+import patient from './views/patient/router'
+import mine from './views/mine/router'
+
+import fertilizer from './views/fertilizer/router'
 import user from './views/user/router'
 
 Vue.use(Router)
@@ -18,8 +20,8 @@ let router = new Router({
     ...home,
     login,
     fertilizer,
-    record,
-    personal,
+    mine,
+    patient,
     order,
     user
   ]

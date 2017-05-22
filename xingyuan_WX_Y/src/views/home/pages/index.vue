@@ -1,7 +1,6 @@
 <template>
   <div>
-    <x-header style="background-color:#09BB07;font-size: 16px;"
-              :left-options="{showBack: false,backText:'返回'}"
+    <x-header :left-options="{showBack: false,backText:'返回'}"
               :right-options="{showMore: true}"
     >
       首 页
@@ -78,8 +77,6 @@
 </script>
 
 <style>
-
-
   .main {
     width: 100%;
     height: auto;
@@ -102,14 +99,6 @@
   .flex-demo p{
     font-size: 18px;
     color:#000
-  }
-
-  .homeGroup .weui-cells__title{
-    color:#000 !important;
-  }
-
-  .homeGroup p{
-    color:#09BB07 !important;
   }
 
 </style>

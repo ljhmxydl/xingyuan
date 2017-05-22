@@ -1,5 +1,5 @@
 <template>
-  <div style="height:99%;">
+  <div style="height:100%;">
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
