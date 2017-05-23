@@ -12,8 +12,8 @@ export default  {
       component: resolve => require(['./pages/index'], resolve)
     },
      {
-      path: 'detail',
-      component: resolve => require(['./pages/detail'], resolve)
+      path: 'doctorInfo',
+      component: resolve => require(['./pages/doctorInfo'], resolve)
     }
   ]
 }

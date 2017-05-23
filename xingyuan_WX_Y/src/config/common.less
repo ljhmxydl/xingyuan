@@ -1,20 +1,47 @@
 /*此文件用来覆盖VUX全局的CSS*/
 @import '../libs/fonts/iconfont.css';
-img{
-  max-width:100%;
+
+*{
+  box-sizing: border-box;
+  color:#333;
 }
+
+img {
+  max-width: 100%;
+}
+
 html, body {
   height: 100%;
   width: 100%;
-  background-color: #fbf9fe;
+  background-color: #f2f2f2;
   overflow-x: hidden;
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
 }
-a{
-  color:#FF520D
+
+.weui-tabbar__item{
+  padding: 14/40rem 0 10/40rem 0 !important;
 }
+
+.weui-tabbar__icon {
+  width: 23/20rem !important;
+  height: 23/20rem !important;
+}
+a{
+  display: block;
+  color:inherit;
+}
+
+.weui-cells.vux-no-group-title{
+  margin-top: 10/40rem;
+}
+
+.weui-cells{
+  font-size: 30/40rem;
+}
+/*
+
 .ellipsis {
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -55,4 +82,4 @@ a{
   height: 46px;
   line-height: 50px;
   text-align: right;
-}
+}*/

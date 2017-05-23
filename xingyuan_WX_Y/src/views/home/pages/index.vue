@@ -1,104 +1,139 @@
 <template>
-  <div>
-    <x-header :left-options="{showBack: false,backText:'返回'}"
-              :right-options="{showMore: true}"
-    >
-      首 页
-    </x-header>
-
-    <!--<div class="main">
-      <flexbox>
+  <div id="home">
+    <div class="home_hd">
+      <img src="../../../assets/images/index/headimgurl.png" class="headimg">
+      <p>黄医生</p>
+    </div>
+    <div class="home_bd">
+      <flexbox class="flex1">
         <flexbox-item>
-          <div class="flex-demo">
-            <router-link to="/home/photo">
-              <img src="../../static/img/home1.png" alt="">
-              <p>拍照上传</p>
-            </router-link>
-          </div>
+          <router-link class="flex-demo" to="/order/askOrders">
+            <img src="../../../assets/images/index/index_5.png" alt="">
+            <badge text="1"></badge>
+            <p>患者咨询</p>
+          </router-link>
         </flexbox-item>
 
         <flexbox-item>
-          <div class="flex-demo">
-            <router-link to="/home/chose">
-              <img src="../../static/img/home2.png" alt="">
-              <p>在线选药</p>
-            </router-link>
-          </div>
+          <router-link class="flex-demo"  to="/order/askOrders">
+            <img src="../../../assets/images/index/index_6.png" alt="">
+            <p>订单</p>
+          </router-link>
         </flexbox-item>
 
+        <flexbox-item>
+          <router-link class="flex-demo"  to="/order/askOrders">
+            <img src="../../../assets/images/index/index_7.png" alt="">
+            <badge text="1"></badge>
+            <p>问诊</p>
+          </router-link>
+        </flexbox-item>
       </flexbox>
 
       <flexbox>
         <flexbox-item>
-          <div class="flex-demo">
-            <router-link to="/home/ask">
-              <img src="../../static/img/home3.png" alt="">
-              <p>咨询预约</p>
-            </router-link>
-          </div>
+          <router-link class="flex-demo" to="/order/askOrders">
+            <img src="../../../assets/images/index/index_8.png" alt="">
+            <p>在线开方</p>
+          </router-link>
         </flexbox-item>
 
         <flexbox-item>
-          <div class="flex-demo">
-            <router-link to="/home/article">
-              <img src="../../static/img/home4.png" alt="">
-              <p>发布文章</p>
-            </router-link>
-          </div>
+          <router-link class="flex-demo" to="/order/askOrders">
+            <img src="../../../assets/images/index/index_9.png" alt="">
+            <p>上传处方</p>
+          </router-link>
         </flexbox-item>
 
+        <flexbox-item>
+          <!--创建诊卡-->
+          <router-link class="flex-demo" to="/order/medicalCard">
+            <img src="../../../assets/images/index/index_10.png" alt="">
+            <p>我的诊卡</p>
+          </router-link>
+        </flexbox-item>
+
+        <flexbox-item>
+          <router-link class="flex-demo" to="/order/askOrders">
+            <img src="../../../assets/images/index/index_11.png" alt="">
+            <p>我的名片</p>
+          </router-link>
+        </flexbox-item>
       </flexbox>
-    </div>-->
-
-    <group title="杏缘动态" class="homeGroup">
-      <cell title="医生使用指南"  is-link></cell>
-    </group>
-
-
+    </div>
   </div>
 </template>
 
 <script>
-  import {XHeader, Flexbox, FlexboxItem, Group, Cell} from 'vux'
+  import {Flexbox, FlexboxItem, Badge} from 'vux'
 
   export default {
     components: {
-      XHeader,
       Flexbox,
       FlexboxItem,
-      Group,
-      Cell
+      Badge
     },
     data () {
-      return {
-      }
+      return {}
     }
   }
 </script>
 
-<style>
-  .main {
-    width: 100%;
-    height: auto;
-    background-color: #fff;
-  }
+<style lang="less">
 
-  .flex-demo {
-    padding-top: 20px;
+  .home_hd {
+    background-color: #fff;
+    padding: 50/40rem 0 20/40rem;
     text-align: center;
-    color: #000;
-    background-color: #fff;
-    margin-bottom: 8px;
-    border-radius: 4px;
-    -webkit-background-clip: padding-box;
-  }
-  .flex-demo img{
-    width: 50%;
+    height: 310/40rem;
+
+  .headimg {
+    width: 176/40rem;
   }
 
-  .flex-demo p{
-    font-size: 18px;
-    color:#000
+  p {
+    font-size: 36/40rem;
+    color: #333;
+    line-height: 1em;
+  }
+
+  }
+
+  .home_bd {
+    overflow: hidden;
+    text-align: center;
+    margin-top: 10px;
+    height: 424/40rem;
+
+    .vux-flexbox {
+      background-color: #fff;
+      height: 50%;
+
+      .flex-demo {
+        position: relative;
+        text-align: center;
+        color: #333;
+        height: 100%;
+        font-size: 26/40rem;
+
+        img {
+          width: 68/40rem;
+        }
+
+      }
+    }
+
+    .vux-badge-single{
+      position: absolute;
+      right: 50/40rem;
+
+    }
+
+    .flex1 {
+      padding: 0 50/40rem;
+      margin-bottom: 10/40rem;
+    }
+
   }
 
 </style>

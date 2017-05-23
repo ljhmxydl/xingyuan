@@ -41,7 +41,7 @@ router.beforeEach((to, from, next) => {
   let toPath = to.path
   let fromPath = from.path
   console.log(`to: ${toPath} from: ${fromPath}`)
-  if (toPath.replace(/[^/]/g, '').length > 1) {
+  if (toPath.replace(/[^/]/g, '').length > 2) {
     alert(1)
     store.state.common.isIndex = false
     console.log(store.state.common.isIndex);

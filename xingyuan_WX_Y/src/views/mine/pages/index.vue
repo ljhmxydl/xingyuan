@@ -1,44 +1,36 @@
 <template>
-  <div class="recordHistory">
-    <div>
-      <x-header slot="header" :left-options="{showBack: false,backText:'返回'}" style="width:100%;position:absolute;left:0;top:0;z-index:100;"  title="测土配肥记录">
-        <!--<router-link to="/fertilizer" slot="right"> 
-          <p>申请</p>
-        </router-link>-->
-      </x-header>
-    </div>
-    <div style="padding-top:46px;">
-      <div class="weui_media_box weui_media_small_appmsg">
-        <div class="weui_cells weui_cells_access">
-          <router-link to="detail">
-            <div class="weui_panel weui_panel_access">
-              <div class="weui_panel_hd">
-                2017年101月
-              </div>
-              <div class="weui_panel_bd">
-                <a href="#!/component/cell" class="weui_media_box weui_media_appmsg">
-                  <div class="weui_media_bd">
-                    <h4 class="weui_media_title">谷兆测土配方有限公司</h4>
-                    <p class="weui_media_desc">
-                      基肥测土申请
-                    </p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </router-link>
+  <div id="mine">
+    <x-header :left-options="{showBack: false}">我的</x-header>
+
+    <group>
+      <CellBox link="/mine/doctorInfo" is-link="true" class="doctorInfo">
+        <div>
+          <img src="../../../assets/images/index/headimgurl.png">
         </div>
-      </div>
-    </div>
+        <div class="infoDiv">
+          <p><span class="doctorName">黄医生</span><span>主治医师</span></p>
+          <p>佛山市高明区中医院 中医心内科</p>
+        </div>
+      </CellBox>
+    </group>
+
+    <group>
+      <cell border-intent="false" title="积分提现" is-link="true" link="/mine/doctorInfo"></cell>
+      <cell title="分享工作室" is-link="true" link="/mine/doctorInfo"></cell>
+      <cell title="处方模板" is-link="true" link="/mine/doctorInfo"></cell>
+    </group>
+
+
   </div>
 </template>
 
 <script>
-import {XButton,XHeader,Panel} from 'vux'
+  import './index.less'
+import {XHeader,Cell, CellBox, Group} from 'vux'
 
 export default {
   components: {
-    XButton,XHeader,Panel
+    XHeader,Cell, CellBox, Group
   }
 }
 </script>
