@@ -1,87 +1,48 @@
 <template>
-  <div class="login">
-    <div class="header">
-      <img class="logo" src="../../../assets/ant_logo.png" width="200" height="200">
-    </div>
-    <group class="weui_cells_form">
-      <x-input name="mobile" placeholder="手机号" keyboard="number" v-model="mobile" is-type="china-mobile" required  ref="user_phone"></x-input>
-      <x-input name="code" placeholder="验证码" keyboard="number" class="weui_vcode" v-model="code" style="padding:0 15px;">
-      <x-button slot="right" :text="btnValue" :disabled="currentDown" type="primary"
-                  style="width:118px;height:49px;border-radius:0;" @click.native="_sendCode"></x-button>
-      </x-input>
+  <div id="login">
+    <x-header :left-options="{backText: ''}">申请注册医生</x-header>
+
+    <group>
+      <x-input title="注册码" placeholder="请写邀请码，没有请留空" label-width="3.7rem"></x-input>
+      <x-input title="医生名" name="username" placeholder="医生名" is-type="china-name" label-width="3.7rem"></x-input>
+      <x-input title="手机" name="mobile" placeholder="请输入手机号码" keyboard="number" is-type="china-mobile" label-width="3.7rem"
+               required></x-input>
+      <x-input title="所属医院" placeholder="所属医院" label-width="3.7rem"></x-input>
+      <x-input title="科室" placeholder="科室" label-width="3.7rem"></x-input>
+      <x-input title="职称" placeholder="职称" label-width="3.7rem"></x-input>
     </group>
-    <div style="padding:.5rem">
-        <x-button type="primary" style="margin-top: 20px;height: 50px;line-height: 50px;" @click.native="startLogin">登录</x-button>
-    </div>  
+    <!--确认-->
+
+    <div style="padding:0 0.75rem;font-size: 0.75rem;line-height: 2.5rem;">
+      <p><input type="checkbox" disabled="true" checked style="margin-right: 8px;">确认表示同意《
+        <router-link to="/order/askOrders" style="display: inline-block;color:#4CAED0">杏缘医生注册协议</router-link>
+        》
+      </p>
+
+      <x-button @click.native="startLogin">确认</x-button>
+    </div>
+
+
   </div>
 </template>
 
 <script>
-  import {Group, Cell, XInput, XButton} from 'vux'
+  import {XHeader, Group, Cell, XInput, XButton} from 'vux'
   import {mapActions, mapGetters} from 'vuex'
 
   export default {
     components: {
-      Group, XInput, XButton, Cell
+      XHeader, Group, XInput, XButton, Cell
     },
     data () {
       return {
-        mobile: '',
-        code: '',
-        btnValue: '获取验证码',
-        currentDown: false,
+
       }
     },
-    methods: {
-      ...mapActions(["getRegisterCode", "getRegisterCodeResult"]),
-      _sendCode(e){
-        if(!this.$refs.user_phone.valid){
-          this.$vux.toast.show({text: '错误的手机号',type:'warn',time:'1000'})
-          return
-        }
-        this.getRegisterCode({
-          phone: this.mobile
-        })
-        let time = 60
-        let self = this
-        this.currentDown = true
-        let timeDown = setInterval(function () {
-          time--;
-          self.btnValue = '已发送(' + time + ')';
-          if (time == '0') {
-            clearInterval(timeDown)
-            self.btnValue = '获取验证码'
-            self.currentDown = false
-          }
-        }, 1000);
-      },
-      startLogin(){
-        if(this.code.length != 6){
-          this.$vux.toast.show({text: '错误的验证码',type:'warn',time:'1000'})
-          return
-        }
-        this.getRegisterCodeResult({
-          phone: this.mobile,
-          code: this.code,
-        })
-      }
-    }
+    methods: {}
   }
 </script>
 
 <style lang="less" scoped>
-.login{
-  .header{
-    padding:2.5rem 0 .5rem;
-    text-align: center;
-    img{
-      width:8rem;
-      height:8rem;
-    }
-  }
-  .weui_vcode .weui_icon_clear:before {
-    top: -6px;
-    position: relative;
-  }
-}
+
 </style>

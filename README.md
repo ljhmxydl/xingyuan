@@ -1,5 +1,5 @@
-#前端开发bug和解决办法记录
-##一、医生端：
+# 前端开发bug和解决办法记录
+## 一、医生端：
 1. B：tab组件实时选择bug。
 	>组件路径：D:\0项目\杏缘医生\xingyuan_WX_Y\src\components\tabbar.vue
 	>
@@ -14,4 +14,9 @@
 	>
 	>解决办法：:selected="$route.path.indexOf('/home') != -1"
 
-##二、患者端：
+4. B：获取页面授权，获取openID和用户信息。
+	>业务逻辑：微信公众号，获取用户微信openId，发给后台查询有没有注册；如果没有注册，默认只能进入注册页面，如果注册通过了则进入首页。
+	>
+	>解决办法：:selected="$route.path.indexOf('/home') != -1"
+
+## 二、患者端：

@@ -11,7 +11,7 @@ export default [
         component:resolve => require(['./pages/index'], resolve),
       }
     ]
-  },
+  }/*,
   {
     //将OPENID注入session
     path: '/home/:id/:redirectUrl/', redirect: to => {
@@ -21,5 +21,5 @@ export default [
       })
       return `/${to.params.redirectUrl}/`
     }
-  }
+  }*/
 ]

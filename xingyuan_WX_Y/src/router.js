@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from './store'
+// import axios from 'axios'
 
 //路由开始
 import login from './views/login/router'
@@ -17,6 +18,56 @@ Vue.use(Router)
 let router = new Router({
   mode: 'hash',
   routes: [
+    // {
+    //   path: '/',
+    //   component:resolve => require(['./views/home/pages/layout.vue'], resolve),
+    //   //检测是否注册、注册是否通过
+    //   beforeEnter: (to, from, next) => {
+    //     let openId = to.params.openid
+    //     console.log(openId);
+    //     axios.post('/xxx', {
+    //       openId: "openId"
+    //     })
+    //       .then(function (response) {
+    //         console.log(response);
+    //         switch(response)
+    //         {
+    //           case 0://待认证
+    //             Vue.$vux.toast.show({text:response.data.message,type:'text',time:1000})
+    //             break;
+    //           case 1://已认证
+    //             Vue.$vux.toast.show({text:response.data.message,type:'text',time:1000})
+    //             break;
+    //           case 2://认证不通过
+    //             Vue.$vux.toast.show({text:response.data.message,type:'text',time:1000})
+    //             break;
+    //           case 3://未注册
+    //             Vue.$vux.toast.show({text:response.data.message,type:'text',time:1000})
+    //             break;
+    //         }
+    //       })
+    //       .catch(function (error) {
+    //         console.log(error);
+    //         Vue.$vux.toast.show({text:error,type:'text',time:1000});
+    //         router.push('/home');
+    //
+    //       });
+    //   }
+    // },
+    // {
+    //   path: '/home',
+    //   component:resolve => require(['./views/home/pages/index.vue'], resolve),
+    // },
+    // {
+    //   //将OPENID注入session
+    //   path: '/home/:id/:redirectUrl/', redirect: to => {
+    //   store.dispatch({
+    //     type: 'setSession',
+    //     amount: to.params.id
+    //   })
+    //   return `/${to.params.redirectUrl}/`
+    // }
+    // },
     ...home,
     login,
     fertilizer,
@@ -42,25 +93,29 @@ router.beforeEach((to, from, next) => {
   let fromPath = from.path
   console.log(`to: ${toPath} from: ${fromPath}`)
   if (toPath.replace(/[^/]/g, '').length > 2) {
-    alert(1)
     store.state.common.isIndex = false
-    console.log(store.state.common.isIndex);
+    // console.log(store.state.common.isIndex);
   }
   else {
-    let depath = toPath === '/' || toPath === '/invite' || toPath === '/rank'
+    let depath = toPath === '/' || toPath === '/login' || toPath === '/rank'
     store.state.common.isIndex = depath ? false : true
-    console.log(store.state.common.isIndex);
+    // console.log(store.state.common.isIndex);
   }
 
   if(store.state.common.session){
-
+    // console.log(store.state.common.session);
     next();
   }else{
     store.dispatch({
       type: 'clearSession'
     })
-    window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf565864b6a1a358d&redirect_uri=http%3a%2f%2fpeifei.qmant.com%2fnoa%2ftoken%3fpage%3dhttp%3a%2f%2fpeifei.qmant.com/index&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
+
+    window.location.href = `http://${window.document.location.host}/?#/home`
+
+    // router.push({ path: 'login'})
+    //window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5c634ca93bc68abf&redirect_uri=http%3a%2f%2fningshuihan.ngrok.cc%2fdoctor%2findex.html&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
   }
+//http://ningshuihan.ngrok.cc/doctor/index.html
 })
 
 export default router = router
