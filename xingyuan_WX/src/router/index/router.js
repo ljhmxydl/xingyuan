@@ -1,13 +1,11 @@
-// const R_INDEX = r => require.ensure([], () => r(require('./pages/index')), '')
+const R_INDEX = r => require.ensure([], () => r(require('./pages/index')), '/')
+
 import store from '../../store'
-import axios from 'axios'
-import Vue from 'vue'
+
 export default [
   {
     path: '/',
-    component:resolve => require(['./pages/layout'], resolve),
-    redirect:'/home'
-    //检测是否注册、注册是否通过
+    component:R_INDEX,
     /*beforeEnter: (to, from, next) => {
       let openId = to.params.openid
       console.log(openId);
@@ -40,12 +38,14 @@ export default [
           console.log(error);
           Vue.$vux.toast.show({text:'网络异常',type:'text',time:1000});
           // window.location.href = `http://${window.document.location.host}/?#/home/`
-        });
-    }*/
-  },
-  {
-    path: '/home',
-    component:resolve => require(['./pages/index'], resolve),
+        })
+    },*/
+    children: [
+      {
+        path: 'index/',
+        redirect:'/'
+      }
+    ]
   },
   {
     //将OPENID注入session

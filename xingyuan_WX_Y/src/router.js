@@ -110,7 +110,7 @@ router.beforeEach((to, from, next) => {
       type: 'clearSession'
     })
 
-    window.location.href = `http://${window.document.location.host}/?#/home`
+    // window.location.href = `http://${window.document.location.host}/?#/home`
 
     // router.push({ path: 'login'})
     //window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5c634ca93bc68abf&redirect_uri=http%3a%2f%2fningshuihan.ngrok.cc%2fdoctor%2findex.html&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"

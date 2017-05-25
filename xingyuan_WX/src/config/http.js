@@ -5,7 +5,7 @@ import store from 'src/store'
 
 axios.defaults.timeout = 5000
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-axios.defaults.baseURL =  (process.env.NODE_ENV == 'development' ? 'http://39.108.65.30:1314/' : 'http://39.108.65.30:1314/')
+axios.defaults.baseURL =  (process.env.NODE_ENV == 'development' ? 'http://ningshuihan.ngrok.cc/' : 'http://ningshuihan.ngrok.cc/')
 
 //POST传参序列化
 axios.interceptors.request.use((config) => {
@@ -24,7 +24,7 @@ axios.interceptors.request.use((config) => {
 
 //code状态码200判断
 axios.interceptors.response.use((res) =>{
-  if(res.data.code != '200'){
+  if(res.data.code != '20000'){
     Vue.$vux.toast.show({text:res.data.message,type:'text',time:1000})
     return Promise.reject(res)
   }
