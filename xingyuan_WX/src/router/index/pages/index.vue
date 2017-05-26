@@ -8,40 +8,59 @@
 //import {XButton,XHeader} from 'vux'
 import './index.less'
 import Vue from 'vue'
-import axios from 'axios'
+//import axios from 'config/http'
 /*import Wechat from 'config/wx.config'
 Wechat()*/
 export default {
   components: {
-//    XButton,XHeader
+    XButton,XHeader
   },
   beforeRouteEnter(to, from, next){
+    function GetQueryString(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null)
+        return unescape(r[2]);
+      return null;
+    }
+    var code = GetQueryString('code');
+
+    this.checkDoctorStatus(code)
     next(vm => {
-      vm.checkDoctorStatus()
+      console.log(code);
+      vm.checkDoctorStatus(code)
+
     })
   },
   data () {
     return {
-
-
     }
   },
+  mounted(){
+//    alert(1)
+//    this.checkDoctorStatus(code)
+  },
   methods:{
-    checkDoctorStatus(){
+    checkDoctorStatus(code){
+//      alert(1)
 //      axios.post('/api/doctor/v1/check.json',{"openid":1})
       /*axios({
-        method:'get',
+        method:'post',
         url: '/api/doctor/v1/check.json',
-        data:{
+        params:{
           "openid":1
         }
       })*/
-      this.$http.post('/api/doctor/v1/check.json',{"openid":1,"SESSION":"oAnmJxNOk4geid2KrRdZA3ZsUUWc"})
+      this.$http.get('/api/doctor/v1/check.json',{"openid":this.$store.state.common.session,"code":code})
       .then(function (response) {
-        console.log(response.code);
+//        console.log(response.code);
         console.log(response.body);
         switch(response.body.code)
         {
+          case '998'://已认证
+//            this.$router.replace('login')
+            Vue.$vux.toast.show({text:response.body.msg,type:'text',time:2000})
+            break;
           case '100'://已认证
 //            this.$router.replace('login')
             Vue.$vux.toast.show({text:response.body.msg,type:'text',time:2000})
