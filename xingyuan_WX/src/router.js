@@ -65,12 +65,57 @@ router.beforeEach((to, from, next) => {
     return null;
   }
 
-  var wxopenid=getcookie('wxopenid');
-  if (!wxopenid) {
-    var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5c634ca93bc68abf&redirect_uri=http%3a%2f%2fningshuihan.ngrok.cc%2fdoctor%2findex.html&response_type=code&scope=snsapi_base&#wechat_redirect';
-    //location.href = url;
-    next()
-  }else{
+  // var wxopenid=getcookie('wxopenid');
+  var openid = window.localStorage.getItem('openid');
+  var code = GetQueryString('code');
+  alert(code)
+  if (!openid) {
+    if (code == null) {
+      var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxddae47b94ee68adc&redirect_uri=http%3a%2f%2f39.108.65.30%3a1314&response_type=code&scope=snsapi_base&#wechat_redirect';
+      //var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5c634ca93bc68abf&redirect_uri=http%3a%2f%2fningshuihan.ngrok.cc%2fdoctor%2findex.html&response_type=code&scope=snsapi_base&#wechat_redirect';
+      location.href = url;
+
+    }else{
+      Vue.http.get('/api/doctor/v1/check.json',{"openid":store.state.common.session,"code":code})
+        .then(function (response) {
+//        console.log(response.code);
+          console.log(response.body);
+          switch(response.body.code)
+          {
+            case '998'://已认证
+//            this.$router.replace('login')
+              Vue.$vux.toast.show({text:response.body.msg,type:'text',time:2000})
+              break;
+            case '100'://已认证
+//            this.$router.replace('login')
+              Vue.$vux.toast.show({text:response.body.msg,type:'text',time:2000})
+              break;
+            case '101'://未注册
+              console.log(1);
+              Vue.$vux.toast.show({text:response.body.msg,type:'text',time:2000})
+              this.$router.replace('login')
+              break;
+            case '102'://认证不通过
+              Vue.$vux.toast.show({text:response.body.msg,type:'text',time:2000})
+//            this.$router.replace('login')
+              break;
+            case '103'://未注册
+              Vue.$vux.toast.show({text:response.body.msg,type:'text',time:2000})
+//            this.$router.replace('login')
+              break;
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+          Vue.$vux.toast.show({text:'网络异常',type:'text',time:1000});
+          window.localStorage.setItem('openid','1231')
+          next()
+          // window.location.href = `http://${window.document.location.host}/?#/home/`
+        })
+
+    // next()
+  }
+  }else {
     next()
   }
 

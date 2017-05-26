@@ -13,7 +13,7 @@ import Vue from 'vue'
 Wechat()*/
 export default {
   components: {
-    XButton,XHeader
+//    XButton,XHeader
   },
   beforeRouteEnter(to, from, next){
     function GetQueryString(name) {
@@ -25,10 +25,10 @@ export default {
     }
     var code = GetQueryString('code');
 
-    this.checkDoctorStatus(code)
+//    this.checkDoctorStatus(code)
     next(vm => {
-      console.log(code);
-      vm.checkDoctorStatus(code)
+//      alert(code);
+//      vm.checkDoctorStatus(code)
 
     })
   },
@@ -42,7 +42,7 @@ export default {
   },
   methods:{
     checkDoctorStatus(code){
-//      alert(1)
+      alert(1)
 //      axios.post('/api/doctor/v1/check.json',{"openid":1})
       /*axios({
         method:'post',
